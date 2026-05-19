@@ -2,7 +2,7 @@ export interface LinkItem {
   id: string;
   title: string;
   url: string;
-  isActive: number;
+  isActive: boolean;
   icon?: string;
 }
 
@@ -10,7 +10,7 @@ export interface ProfileTheme {
   backgroundColor: string;
   buttonBackgroundColor: string;
   buttonTextColor: string;
-  buttonStyle: string;
+  buttonStyle: "rounded" | "rounded-full" | "sharp";
   fontFamily: string;
 }
 
