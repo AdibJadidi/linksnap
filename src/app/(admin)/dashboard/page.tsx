@@ -21,7 +21,7 @@ const DashboardPage = () => {
   }
   return (
     <main className="flex w-full h-screen bg-zinc-950 text-zinc-50">
-      <section className="flex-1 h-full bg-zinc-900 p-8 lg:p-12 border-r border-zinc-800">
+      <section className="flex-1 h-full bg-zinc-900 p-8 lg:p-12 border-r border-zinc-800 space-y-8">
         <div className="flex flex-col">
           <h1>LinkSnap Workspace</h1>
           <p>Customize your micro-landing page in real-time.</p>
