@@ -1,6 +1,7 @@
 "use client";
 import EditorPanel from "@/features/profile/component/EditorPanel";
 import PreviewPanel from "@/features/profile/component/PreviewPanel";
+import ShareButton from "@/features/profile/component/ShareButton";
 import React, { useEffect, useState } from "react";
 
 const DashboardPage = () => {
@@ -26,6 +27,7 @@ const DashboardPage = () => {
           <h1>LinkSnap Workspace</h1>
           <p>Customize your micro-landing page in real-time.</p>
         </div>
+        <ShareButton />
         <EditorPanel />
       </section>
       <section className="hidden md:flex w-[450px] lg:w-[500px] h-full bg-zinc-800 items-center justify-center p-6 sticky top-0">

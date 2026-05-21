@@ -12,6 +12,7 @@ interface ProfileState {
   deleteLink: (id: string) => void;
 
   updateTheme: (theme: Partial<ProfileTheme>) => void;
+  generateShareUrl: () => string;
 }
 
 const initialProfile: UserProfile = {
@@ -31,7 +32,7 @@ const initialProfile: UserProfile = {
 
 export const useProfileStore = create<ProfileState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       profile: initialProfile,
       updateBasicInfo: (info) =>
         set((state) => ({
@@ -75,6 +76,15 @@ export const useProfileStore = create<ProfileState>()(
             theme: { ...state.profile.theme, ...themeUpdates },
           },
         })),
+      generateShareUrl: () => {
+        const { profile } = get();
+        const jsonString = JSON.stringify(profile);
+        const encodedData = btoa(encodeURIComponent(jsonString));
+
+        const baseUrl =
+          typeof window !== "undefined" ? window.location.origin : "";
+        return `${baseUrl}/${profile.username}?data=${encodedData}`;
+      },
     }),
     {
       name: "linksnap-profile-storage",

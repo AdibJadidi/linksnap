@@ -1,6 +1,7 @@
 import React from "react";
 import { useProfileStore } from "../store/useProfileStore";
 import LinkItemCard from "./LinkItemCard";
+import { AnimatePresence } from "framer-motion";
 
 const LinksManager = () => {
   const { profile, addLink } = useProfileStore();
@@ -25,13 +26,15 @@ const LinksManager = () => {
       </div>
 
       <div className="space-y-3 mt-2">
-        {links.length === 0 ? (
-          <div className="flex justify-center items-center text-sm text-zinc-400 mt-2 border border-zinc-800 rounded-md  shadow-sm p-8">
-            Click "Add Link" to populate your stack
-          </div>
-        ) : (
-          links.map((link) => <LinkItemCard key={link.id} link={link} />)
-        )}
+        <AnimatePresence mode="popLayout">
+          {links.length === 0 ? (
+            <div className="flex justify-center items-center text-sm text-zinc-400 mt-2 border border-zinc-800 rounded-md  shadow-sm p-8">
+              Click "Add Link" to populate your stack
+            </div>
+          ) : (
+            links.map((link) => <LinkItemCard key={link.id} link={link} />)
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

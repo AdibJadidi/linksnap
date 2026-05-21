@@ -3,6 +3,7 @@
 import { LinkItem } from "@/types";
 import { useProfileStore } from "../store/useProfileStore";
 import { Trash2, Link2, Type } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface LinkItemCardProps {
   link: LinkItem;
@@ -12,7 +13,14 @@ export default function LinkItemCard({ link }: LinkItemCardProps) {
   const { updateLink, deleteLink } = useProfileStore();
 
   return (
-    <div className="group relative rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 space-y-4 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/70 shadow-sm">
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: -20, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: 20, scale: 0.95, height: 0, marginBottom: 0 }}
+      transition={{ type: "spring", stiffness: 200, damping: 20 }}
+      className="group relative rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 space-y-4 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/70 shadow-sm"
+    >
       <div className="flex items-center justify-between border-b border-zinc-800/60 pb-2">
         <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">
           Link Node
@@ -49,6 +57,6 @@ export default function LinkItemCard({ link }: LinkItemCardProps) {
           />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

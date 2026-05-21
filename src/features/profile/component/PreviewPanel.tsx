@@ -1,6 +1,5 @@
-import React from "react";
 import { useProfileStore } from "../store/useProfileStore";
-import LinkItemCard from "./LinkItemCard";
+import { motion } from "framer-motion";
 
 const PreviewPanel = () => {
   const { profile } = useProfileStore();
@@ -15,7 +14,7 @@ const PreviewPanel = () => {
     <div className="w-[320px] h-[640px] flex flex-col bg-zinc-950 border-8 border-zinc-800 relative rounded-[40px] shadow-2xl overflow-hidden">
       <div className="absolute top-3 left-1/2 -translate-x-1/2 w-28 h-4 bg-zinc-800 rounded-full z-10" />
       <div
-        className="flex-1 p-6 flex flex-col pt-8 items-center overflow-y-auto no-scrollbar h-full"
+        className="flex-1 pt-10 p-6 flex flex-col items-center overflow-y-auto no-scrollbar h-full"
         style={{ backgroundColor: theme.backgroundColor }}
       >
         <div className="w-20 h-20 border-zinc-700/50 border-2 rounded-full bg-zinc-800 overflow-hidden flex items-center justify-center shadow-md">
@@ -61,7 +60,10 @@ const PreviewPanel = () => {
             </div>
           ) : (
             links.map((link) => (
-              <a
+              <motion.a
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
                 key={link.id}
                 href={formatUrl(link.url || "")}
                 target="_blank"
@@ -79,7 +81,7 @@ const PreviewPanel = () => {
                 }}
               >
                 {link.title}
-              </a>
+              </motion.a>
             ))
           )}
         </div>
