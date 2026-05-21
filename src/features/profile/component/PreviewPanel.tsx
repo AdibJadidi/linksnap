@@ -1,5 +1,6 @@
 import React from "react";
 import { useProfileStore } from "../store/useProfileStore";
+import LinkItemCard from "./LinkItemCard";
 
 const PreviewPanel = () => {
   const { profile } = useProfileStore();
@@ -18,13 +19,11 @@ const PreviewPanel = () => {
               alt={name}
               className="w-full h-full object-cover"
               onError={(e) => {
-                // اگر لینک عکس خراب بود، یک ظاهر دیفالت نشان بده
                 (e.target as HTMLImageElement).src =
                   "https://api.dicebear.com/7.x/bottts/svg?seed=Felix";
               }}
             />
           ) : (
-            // اگر کاربر هنوز عکسی نگذاشته بود، حرف اول اسمش را نشان بده
             <span className="text-xl font-bold text-zinc-400">
               {name ? name.charAt(0).toUpperCase() : "?"}
             </span>
